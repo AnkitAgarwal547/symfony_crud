@@ -1,4 +1,4 @@
-# symfony_crud
+# Symfony CRUD
 
 
 1. Create Database:
