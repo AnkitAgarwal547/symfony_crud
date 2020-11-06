@@ -1,0 +1,26 @@
+{% extends 'master.html.twig' %}
+
+{% block title %}Hello RegisterController!{% endblock %}
+
+{% block body %}
+    <h1>Register</h1>
+
+    <div class="row mt-5">
+    	<div class="col-md-6 m-auto">
+    		{% if error and message %}
+                <div class="alert alert-danger">{{ message|trans([message], 'security') }}</div>
+            {% elseif message !='' %}
+            	<div class="alert alert-success">{{ message|trans([message], 'security') }}</div>
+            {% endif %}
+    		{{ form_start(registrationForm) }}
+		        {{ form_row(registrationForm.title) }}
+		        {{ form_row(registrationForm.email) }}
+		        {{ form_row(registrationForm.password) }}
+		        {# {{ form_row(registrationForm.plainPassword) }} #}
+		        {# {{ form_row(registrationForm.agreeTerms) }} #}
+				<br>
+		        <button type="submit" class="btn btn-md btn-primary">Register</button>
+		    {{ form_end(registrationForm) }}
+    	</div>
+    </div>
+{% endblock %}

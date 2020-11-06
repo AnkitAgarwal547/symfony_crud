@@ -1,0 +1,42 @@
+{% extends 'master.html.twig' %}
+
+{% block title %}Post Create!{% endblock %}
+
+{% block body %}
+<div class="container">
+    <br>
+    {% if error and message %}
+    <div class="alert alert-danger">
+        <strong>OOPs!</strong> {{ message }}
+    </div>
+    {% elseif message %}
+    <div class="alert alert-success">
+        <strong>Success!</strong> {{ message }}
+    </div>
+    {% endif %}
+    <br>
+    <h3>Create Posts</h3>
+    <br>
+    <form action="" method="post" action="{{path('post_create')}}"  enctype="multipart/form-data">
+        <input type="hidden" name="token" value="{{ csrf_token('upload') }}" />
+        <div class="form-group">
+            <label for="title">Title:</label>
+            <input type="text" class="form-control" id="title" name="title">
+        </div>
+        <div class="form-group">
+            <label for="desc">Description:</label>
+            {# <input type="password" class="form-control" id="pwd"> #}
+            <textarea class="form-control" id="desc" rows="6" name="desc"></textarea>
+        </div>
+        <div class="form-group">
+            <label for="desc">Calendar:</label>
+            <input type="date" class="form-control" name="calender"/>
+        </div>
+        <div class="form-group">
+            <label for="media">Upload File:</label>
+            <input type="file" name="media" class="form-control" id="media" name="file" value="" required> 
+        </div>
+        <button type="submit" class="btn btn-success">Submit</button>
+    </form>
+</div>
+{% endblock %}

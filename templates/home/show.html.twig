@@ -1,0 +1,47 @@
+{% extends 'master.html.twig' %}
+
+{% block title %}Post Create!{% endblock %}
+
+{% block body %}
+<div class="container">
+    <br>
+    {% if error and message %}
+    <div class="alert alert-danger">
+        <strong>OOPs!</strong> {{ message }}
+    </div>
+    {% elseif message %}
+    <div class="alert alert-success">
+        <strong>Success!</strong> {{ message }}
+    </div>
+    {% endif %}
+    <br>
+    <h3>Create Posts</h3>
+    <br>
+    <a href="{{ path('home') }}">Back to list</a>
+    <br>
+    <form action="" method="post"   enctype="multipart/form-data">
+        <input type="hidden" name="token" value="{{ csrf_token('upload') }}" />
+        <div class="form-group">
+            <label for="title">Title:</label>
+            <input type="text" class="form-control" id="title" name="title" value="{{ post.title }}" readonly>
+        </div>
+        <div class="form-group">
+            <label for="desc">Description:</label>
+            {# <input type="password" class="form-control" id="pwd"> #}
+            <textarea class="form-control" id="desc" rows="6" name="desc" readonly>{{ post.description }}</textarea>
+        </div>
+        <div class="form-group">
+            <label for="desc">Calendar:</label>
+            <input type="date" class="form-control" name="calender" value="{{ post.created }}" readonly/>
+        </div class="form-group">
+            <label for="desc">Video:</label>
+            <div>
+                <video width="320" height="240" controls>
+                    <source src="{{ asset('uploads/') }}{{ post.media }}" type="video/mp4">
+                </video>
+            </div>
+        <div>
+        </div>
+    </form>
+</div>
+{% endblock %}

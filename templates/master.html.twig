@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8"> 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <meta name="_csrf_token" content="{{ csrf_token('authenticate') }}">
+    <title>{% block title %}CSV Uploading!{% endblock %}</title>
+    <!-- Le styles -->
+    <link href="{{asset('css/bootstrap.min.css')}}" rel="stylesheet">
+     
+  </head>
+
+  <body> 
+    <nav class="navbar navbar-expand navbar-dark bg-dark">
+      <a class="navbar-brand" href="">Symfony </a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample02" aria-controls="navbarsExample02" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarsExample02">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="{{ path('post') }}">Home <span class="sr-only">(current)</span></a>
+          </li>
+          {% if app.user %} 
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Post
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" href="{{ path('post_create') }}">Create</a>
+              <a class="dropdown-item" href="{{ path('post') }}">View</a>
+            </div>
+          </li>
+          {% endif %}
+        </ul> 
+        <ul class="navbar-nav ml-auto">
+          {% if app.user %}
+            <li class="nav-item">
+              <a href="{{ path('app_logout') }}" class="nav-link">Logout</a>
+            </li>
+          {% else %}
+            <li class="nav-item">
+              <a class="nav-link" href="{{path('app_login')}}">Login</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{{path('register')}}">Signup</a>
+            </li>
+          {% endif %} 
+        </ul>
+      </div>
+    </nav>
+
+    <div class="container"> 
+      {% block body %}{% endblock %} 
+
+    </div> <!-- /container -->
+
+    <!-- Le javascript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    {% block scripts %}
+      <script src="{{ asset('js/jquery.min.js') }}"></script> 
+      <script src="{{ asset('js/popper.min.js') }}"></script> 
+      <script src="{{ asset('js/bootstrap.min.js') }}"></script> 
+    {% endblock %}
+  </body>
+</html>
